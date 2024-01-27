@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	aria-hidden="true" role="img" class="iconify iconify--logos" width="32" height="32"
+	preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256">
+	<rect x="0" y="0" width="256" height="256" fill="#f0f0f0" stroke="#000" stroke-width="16" />
+	<line x1="48" y1="128" x2="208" y2="128" stroke="#000" stroke-width="16" />
+	<line x1="128" y1="48" x2="128" y2="208" stroke="#000" stroke-width="16" />
+	<circle cx="128" cy="128" r="48" fill="#000" />
+</svg>

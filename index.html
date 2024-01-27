@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registers transformations</title>
+    <script defer type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <h1>Register transformations</h1>
+    <p>
+      Showcases the transformations needed to go from one wait-free register to
+      a different one. Configure the base registers and the target register to
+      see the needed transformation.
+      <a
+        href="https://github.com/shilangyu/register-transformations"
+        target="_blank"
+        id="source-code-link"
+        >Source code</a
+      >.
+    </p>
+
+    <div class="register-configs">
+      <fieldset class="register-config">
+        <legend>Base registers</legend>
+        <div>
+          <div>Value</div>
+          <div>
+            <input
+              type="radio"
+              id="base-cardinality-binary"
+              name="base-cardinality"
+              value="Binary"
+              checked
+            />
+            <label for="base-cardinality-binary">Binary</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="base-cardinality-multivalue"
+              name="base-cardinality"
+              value="Multivalue"
+            />
+            <label for="base-cardinality-multivalue">Multivalue</label>
+          </div>
+        </div>
+        <div>
+          <div>Interface</div>
+          <div>
+            <input
+              type="radio"
+              id="base-interface-binary"
+              name="base-interface"
+              value="SRSW"
+              checked
+            />
+            <label for="base-interface-srsw">SRSW</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="base-interface-binary"
+              name="base-interface"
+              value="MRSW"
+            />
+            <label for="base-interface-mrsw">MRSW</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="base-interface-binary"
+              name="base-interface"
+              value="MRMW"
+            />
+            <label for="base-interface-mrmw">MRMW</label>
+          </div>
+        </div>
+        <div>
+          <div>Type</div>
+          <div>
+            <input
+              type="radio"
+              id="base-type-binary"
+              name="base-type"
+              value="Safe"
+              checked
+            />
+            <label for="base-type-safe">Safe</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="base-type-binary"
+              name="base-type"
+              value="Regular"
+            />
+            <label for="base-type-regular">Regular</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="base-type-binary"
+              name="base-type"
+              value="Atomic"
+            />
+            <label for="base-type-atomic">Atomic</label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="register-config">
+        <legend>Target register</legend>
+
+        <div>
+          <div>Value</div>
+          <div>
+            <input
+              type="radio"
+              id="target-cardinality-binary"
+              name="target-cardinality"
+              value="Binary"
+              checked
+            />
+            <label for="target-cardinality-binary">Binary</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="target-cardinality-multivalue"
+              name="target-cardinality"
+              value="Multivalue"
+            />
+            <label for="target-cardinality-multivalue">Multivalue</label>
+          </div>
+        </div>
+        <div>
+          <div>Interface</div>
+          <div>
+            <input
+              type="radio"
+              id="target-interface-binary"
+              name="target-interface"
+              value="SRSW"
+              checked
+            />
+            <label for="target-interface-srsw">SRSW</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="target-interface-binary"
+              name="target-interface"
+              value="MRSW"
+            />
+            <label for="target-interface-mrsw">MRSW</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="target-interface-binary"
+              name="target-interface"
+              value="MRMW"
+            />
+            <label for="target-interface-mrmw">MRMW</label>
+          </div>
+        </div>
+        <div>
+          <div>Type</div>
+          <div>
+            <input
+              type="radio"
+              id="target-type-binary"
+              name="target-type"
+              value="Safe"
+              checked
+            />
+            <label for="target-type-safe">Safe</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="target-type-binary"
+              name="target-type"
+              value="Regular"
+            />
+            <label for="target-type-regular">Regular</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="target-type-binary"
+              name="target-type"
+              value="Atomic"
+            />
+            <label for="target-type-atomic">Atomic</label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div id="transformation"></div>
+  </body>
+</html>
