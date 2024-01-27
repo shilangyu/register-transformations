@@ -70,13 +70,101 @@ const transformations: Transformations = [
       },
     ],
     code: dedent`
-			func Read()
-				return Reg[i].read()
-			
-			func Write(v)
-				for j in 1..N
-					Reg[j].write(v)
-		`,
+      «init»
+        Reg[1..N] := 0
+
+      func Read()
+        return Reg[i].read()
+      
+      func Write(v)
+        for j in 1..N
+          Reg[j].write(v)
+    `,
+  },
+  {
+    maps: [
+      {
+        from: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.SRSW,
+          type: Type.Safe,
+        },
+        to: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.SRSW,
+          type: Type.Regular,
+        },
+      },
+      {
+        from: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.MRSW,
+          type: Type.Safe,
+        },
+        to: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.MRSW,
+          type: Type.Regular,
+        },
+      },
+    ],
+    code: dedent`
+      «init»
+        Reg := 0
+      
+      func Read()
+        return Reg.read()
+      
+      func Write(v)
+        if old ≠ v
+          Reg.write(v)
+          old := v
+    `,
+  },
+  {
+    maps: [
+      {
+        from: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.SRSW,
+          type: Type.Regular,
+        },
+        to: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.SRSW,
+          type: Type.Atomic,
+        },
+      },
+      {
+        from: {
+          cardinality: Cardinality.Multivalue,
+          interface: Interface.SRSW,
+          type: Type.Regular,
+        },
+        to: {
+          cardinality: Cardinality.Multivalue,
+          interface: Interface.SRSW,
+          type: Type.Atomic,
+        },
+      },
+    ],
+    code: dedent`
+      «init»
+        Reg := 0
+        t := 0
+        x := 0
+      
+      func Read()
+        (t', x') := Reg.read()
+        if t' > t
+          t := t'
+          x := x'
+        return x
+      
+      func Write(v)
+        t := t + 1
+        Reg.write((t, v))
+    `,
   },
 ];
 

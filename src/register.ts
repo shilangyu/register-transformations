@@ -20,7 +20,7 @@ export interface Register {
 }
 
 export const describe = (register: Register): string => {
-  return `${register.cardinality} ${register.interface} ${register.type} register`;
+  return `${register.cardinality} ${register.interface} ${register.type}`;
 };
 
 export const combinations: Register[] = (() => {

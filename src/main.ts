@@ -28,7 +28,6 @@ const base = register("base");
 const target = register("target");
 
 const printStep = (step: TransformationStep) => {
-  console.log(step.code);
   return `<pre><code>${step.code}</code></pre>`;
 };
 
