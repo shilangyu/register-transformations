@@ -166,6 +166,98 @@ const transformations: Transformations = [
         Reg.write((t, v))
     `,
   },
+  {
+    maps: [
+      {
+        from: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.SRSW,
+          type: Type.Atomic,
+        },
+        to: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.MRSW,
+          type: Type.Atomic,
+        },
+      },
+      {
+        from: {
+          cardinality: Cardinality.Multivalue,
+          interface: Interface.SRSW,
+          type: Type.Atomic,
+        },
+        to: {
+          cardinality: Cardinality.Multivalue,
+          interface: Interface.MRSW,
+          type: Type.Atomic,
+        },
+      },
+    ],
+    code: dedent`
+      «init»
+        RReg[(1, 1), (1, 2), .., (N, N)] := 0
+        WReg[1..N] := 0
+        t := 0
+      
+      func Read()
+        for j = 1..N
+          (t[j], x[j]) := RReg[i, j].read()
+        (t[0], x[0]) := WReg[i].read()
+        (t', x') := highest(t, x)
+        for j = 1..N
+          RReg[i, j].write((t', x'))
+        return x
+      
+      func Write(v)
+        t := t + 1
+        for j in 1..N
+          WReg.write((t, v))
+    `,
+  },
+  {
+    maps: [
+      {
+        from: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.MRSW,
+          type: Type.Atomic,
+        },
+        to: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.MRMW,
+          type: Type.Atomic,
+        },
+      },
+      {
+        from: {
+          cardinality: Cardinality.Multivalue,
+          interface: Interface.MRSW,
+          type: Type.Atomic,
+        },
+        to: {
+          cardinality: Cardinality.Multivalue,
+          interface: Interface.MRMW,
+          type: Type.Atomic,
+        },
+      },
+    ],
+    code: dedent`
+      «init»
+        Reg[1..N] := 0
+      
+      func Read()
+        for j = 1..N
+          (t[j], x[j]) := Reg[j].read()
+        (t', x') := highest(t, x)
+        return x
+        
+      func Write(v)
+        for j = 1..N
+          (t[j], x[j]) := Reg[j].read()
+        (t', x') := highest(t, x)
+        Reg[i].write((t' + 1, v))
+    `,
+  },
 ];
 
 // `transformations` are like functions with covariant return types (to) and contravariant arguments (from)
