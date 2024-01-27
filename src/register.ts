@@ -1,6 +1,6 @@
 export enum Cardinality {
-  Binary = "binary",
-  Multivalue = "multivalue",
+  Binary = "Binary",
+  Multivalue = "Multivalue",
 }
 export enum Interface {
   SRSW = "SRSW",
