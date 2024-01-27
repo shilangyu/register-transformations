@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:gh-pages": "tsc && vite build --base=/register-transformations/"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
