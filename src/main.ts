@@ -28,7 +28,20 @@ const base = register("base");
 const target = register("target");
 
 const printStep = (step: TransformationStep) => {
-  return `<pre><code>${step.code}</code></pre>`;
+  const keywords = ["return", "func", "if", "«init»", "for", "in"];
+  const registers = ["Reg", "RReg", "WReg"];
+
+  let code = step.code;
+  for (const keyword of keywords) {
+    code = code.split(keyword).join(`<span class="keyword">${keyword}</span>`);
+  }
+  for (const register of registers) {
+    code = code
+      .split(register)
+      .join(`<span class="register">${register}</span>`);
+  }
+
+  return `<pre><code>${code}</code></pre>`;
 };
 
 // Updates the transformation showcase

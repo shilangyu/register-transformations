@@ -79,6 +79,14 @@ fieldset {
   color: #ea6060;
 }
 
+.keyword {
+  color: #ff9d00;
+}
+
+.register {
+  color: #92c546;
+}
+
 pre {
   text-align: left;
   display: inline-block;
