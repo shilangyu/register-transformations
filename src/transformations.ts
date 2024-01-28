@@ -111,6 +111,7 @@ const transformations: Transformations = [
     code: dedent`
       «init»
         Reg := 0
+        old := 0
       
       func Read()
         return Reg.read()
@@ -192,7 +193,7 @@ const transformations: Transformations = [
     ],
     code: dedent`
       «init»
-        Reg := 0
+        Reg := (0, 0)
         t := 0
         x := 0
       
@@ -237,8 +238,8 @@ const transformations: Transformations = [
     ],
     code: dedent`
       «init»
-        RReg[(1, 1), (1, 2), .., (N, N)] := 0
-        WReg[1..N] := 0
+        RReg[(1, 1), (1, 2), .., (N, N)] := (0, 0)
+        WReg[1..N] := (0, 0)
         t := 0
       
       func Read()
@@ -285,7 +286,7 @@ const transformations: Transformations = [
     ],
     code: dedent`
       «init»
-        Reg[1..N] := 0
+        Reg[1..N] := (0, 0)
       
       func Read()
         for j = 1..N
