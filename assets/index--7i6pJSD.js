@@ -63,7 +63,7 @@
         (t[0], x[0]) := WReg[i].read()
         (t', x') := highest(t, x)
         for j in 1..N
-          RReg[i, j].write((t', x'))
+          RReg[j, i].write((t', x'))
         return x
       
       func Write(v)
