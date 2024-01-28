@@ -246,7 +246,7 @@ const transformations: Transformations = [
         for j in 1..N
           (t[j], x[j]) := RReg[i, j].read()
         (t[0], x[0]) := WReg[i].read()
-        (t', x') := highest(t, x)
+        (t', x') := highest(t[..], x[..])
         for j in 1..N
           RReg[j, i].write((t', x'))
         return x
@@ -291,13 +291,13 @@ const transformations: Transformations = [
       func Read()
         for j in 1..N
           (t[j], x[j]) := Reg[j].read()
-        (t', x') := highest(t, x)
+        (t', x') := highest(t[..], x[..])
         return x
         
       func Write(v)
         for j in 1..N
           (t[j], x[j]) := Reg[j].read()
-        (t', x') := highest(t, x)
+        (t', x') := highest(t[..], x[..])
         Reg[i].write((t' + 1, v))
     `,
   },
