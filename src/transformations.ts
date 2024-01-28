@@ -130,6 +130,48 @@ const transformations: Transformations = [
           type: Type.Regular,
         },
         to: {
+          cardinality: Cardinality.Multivalue,
+          interface: Interface.SRSW,
+          type: Type.Regular,
+        },
+      },
+      {
+        from: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.MRSW,
+          type: Type.Regular,
+        },
+        to: {
+          cardinality: Cardinality.Multivalue,
+          interface: Interface.MRSW,
+          type: Type.Regular,
+        },
+      },
+    ],
+    code: dedent`
+      «init»
+        Reg[0..M] := [1, 0, .., 0]
+      
+      func Read()
+        for j in 0..M
+          if Reg[j].read() = 1
+            return j
+      
+      func Write(v)
+        Reg[v].write(1)
+        for j in (v-1)..0
+          Reg[j].write(0)
+    `,
+  },
+  {
+    maps: [
+      {
+        from: {
+          cardinality: Cardinality.Binary,
+          interface: Interface.SRSW,
+          type: Type.Regular,
+        },
+        to: {
           cardinality: Cardinality.Binary,
           interface: Interface.SRSW,
           type: Type.Atomic,
@@ -264,8 +306,7 @@ const transformations: Transformations = [
 // registers have a partial order (subtype relation)
 // so we find the transformations steps:
 // 1. construct a directed graph by expanding `transformations` with all possible subtypings (nodes are registers, edges are transformations)
-// 2. expand the graph with implicit conversions: weakening (a transformation of a register to a subtype)
-// 3. find shortest path between two registers
+// 2. find shortest path between two registers
 const graph = (() => {
   const adjList: [Register, { target: Register; code: string }[]][] = [];
   // don't be smart about it, its a really small graph, just do it the easy way
@@ -351,6 +392,6 @@ export const findTransformation = (
     }
   }
 
-  // No path found
+  // no path found
   return [];
 };
