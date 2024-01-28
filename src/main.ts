@@ -29,7 +29,7 @@ const target = register("target");
 
 const printStep = (step: TransformationStep) => {
   const keywords = ["return", "func", "if", "«init»", "for", "in"];
-  const registers = ["Reg", "RReg", "WReg"];
+  const registers = ["RReg", "WReg", "Reg"];
 
   let code = step.code;
   for (const keyword of keywords) {

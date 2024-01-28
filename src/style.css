@@ -1,14 +1,14 @@
 :root {
   --text-color: rgba(255, 255, 255, 0.87);
   --bg-color: #242424;
-  --github-icon: url(./github-mark-white.svg);
+  --github-icon: url(/github-mark-white.svg);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --text-color: #242424;
     --bg-color: rgba(255, 255, 255, 0.87);
-    --github-icon: url(./github-mark-black.svg);
+    --github-icon: url(/github-mark-black.svg);
   }
 }
 
