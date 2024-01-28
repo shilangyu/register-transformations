@@ -69,7 +69,7 @@
       func Write(v)
         t := t + 1
         for j in 1..N
-          WReg.write((t, v))
+          WReg[j].write((t, v))
     `},{maps:[{from:{cardinality:i.Binary,interface:n.MRSW,type:a.Atomic},to:{cardinality:i.Binary,interface:n.MRMW,type:a.Atomic}},{from:{cardinality:i.Multivalue,interface:n.MRSW,type:a.Atomic},to:{cardinality:i.Multivalue,interface:n.MRMW,type:a.Atomic}}],code:f`
       «init»
         Reg[1..N] := (0, 0)
