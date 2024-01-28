@@ -249,7 +249,7 @@ const transformations: Transformations = [
         (t', x') := highest(t[..], x[..])
         for j in 1..N
           RReg[j, i].write((t', x'))
-        return x
+        return x'
       
       func Write(v)
         t := t + 1

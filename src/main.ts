@@ -67,7 +67,7 @@ const onInputChange = () => {
         break;
       }
 
-      transformation.innerHTML = transformation!.innerHTML = path
+      transformation.innerHTML = path
         .map(
           (e, i) => `
             <div>
