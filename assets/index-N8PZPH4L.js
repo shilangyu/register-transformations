@@ -58,11 +58,11 @@
         t := 0
       
       func Read()
-        for j = 1..N
+        for j in 1..N
           (t[j], x[j]) := RReg[i, j].read()
         (t[0], x[0]) := WReg[i].read()
         (t', x') := highest(t, x)
-        for j = 1..N
+        for j in 1..N
           RReg[i, j].write((t', x'))
         return x
       
@@ -75,13 +75,13 @@
         Reg[1..N] := (0, 0)
       
       func Read()
-        for j = 1..N
+        for j in 1..N
           (t[j], x[j]) := Reg[j].read()
         (t', x') := highest(t, x)
         return x
         
       func Write(v)
-        for j = 1..N
+        for j in 1..N
           (t[j], x[j]) := Reg[j].read()
         (t', x') := highest(t, x)
         Reg[i].write((t' + 1, v))
