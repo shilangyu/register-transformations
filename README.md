@@ -1,6 +1,6 @@
 # Register transformations
 
-Showcases the transformations needed to go from one wait-free register to a different one. Configure the base registers and the target output register to see the needed transformation. [See website here](https://shilangyu.dev/register-transformations).
+Showcases the transformations needed to go from one wait-free register to a different one. Configure the base registers and the target output register to see the needed transformation. [See website here](https://github.shilangyu.dev/register-transformations).
 
 <!-- TODO screenshot -->
 
